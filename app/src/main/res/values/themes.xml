@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppNewNetwork" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="fontFamily">@font/montaga</item>
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/gray_suit</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/blue_darker</item>
+        <item name="colorSecondaryVariant">@color/blue_darker</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">false</item>
+
+    </style>
+
+    <style name="Theme.AppNewNetwork" parent="Base.Theme.AppNewNetwork"/>
+
+</resources>

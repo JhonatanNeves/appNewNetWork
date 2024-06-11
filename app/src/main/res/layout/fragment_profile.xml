@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_main">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_insta_profile_thin"
+            app:civ_border_color="@color/gray_suit"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_img_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_insta_add_profile"
+            app:civ_border_color="@color/gray_suit"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/blue_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_img"
+            app:layout_constraintEnd_toEndOf="@+id/profile_img" />
+
+        <TextView
+            android:id="@+id/profile_txt_posts_count"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:layout_marginBottom="10dp"
+            android:text="0"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_img"
+            app:layout_constraintEnd_toStartOf="@id/profile_txt_followers_count"
+            app:layout_constraintStart_toEndOf="@+id/profile_img"
+            app:layout_constraintTop_toTopOf="@+id/profile_img" />
+
+        <TextView
+            android:id="@+id/profile_txt_followers_count"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:text="0"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/profile_txt_following_count"
+            app:layout_constraintStart_toEndOf="@+id/profile_txt_posts_count"
+            app:layout_constraintTop_toTopOf="@+id/profile_txt_posts_count" />
+
+        <TextView
+            android:id="@+id/profile_txt_following_count"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:text="0"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_txt_followers_count"
+            app:layout_constraintTop_toTopOf="@+id/profile_txt_followers_count" />
+
+        <TextView
+            android:id="@+id/profile_txt_posts"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:text="@string/posts"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/profile_txt_followers"
+            app:layout_constraintStart_toEndOf="@+id/profile_img"
+            app:layout_constraintTop_toBottomOf="@+id/profile_txt_posts_count" />
+
+        <TextView
+            android:id="@+id/profile_txt_followers"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:text="@string/followers"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/profile_txt_following"
+            app:layout_constraintStart_toEndOf="@+id/profile_txt_posts_count"
+            app:layout_constraintTop_toBottomOf="@+id/profile_txt_followers_count" />
+
+        <TextView
+            android:id="@+id/profile_txt_following"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:text="@string/following"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_txt_followers"
+            app:layout_constraintTop_toBottomOf="@+id/profile_txt_following_count" />
+
+        <TextView
+            android:id="@+id/profile_txt_username"
+            style="@style/Theme.AppNewNetwork.TextViewProfile"
+            android:layout_marginTop="5dp"
+            android:text="@string/username"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/profile_img"
+            app:layout_constraintStart_toStartOf="@+id/profile_img"
+            app:layout_constraintTop_toBottomOf="@id/profile_img" />
+
+        <Button
+            android:id="@+id/profile_btn_edit_profile"
+            style="@style/Theme.AppNewNetwork.ButtonProfile"
+            android:layout_width="178dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/edit_profile"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/profile_btn_share_profile"
+            app:layout_constraintStart_toStartOf="@+id/profile_img"
+            app:layout_constraintTop_toBottomOf="@id/profile_txt_username" />
+
+        <Button
+            android:id="@+id/profile_btn_share_profile"
+            style="@style/Theme.AppNewNetwork.ButtonProfile"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/share_profile"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_btn_edit_profile"
+            app:layout_constraintTop_toTopOf="@+id/profile_btn_edit_profile" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/profile_nav_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/top_bottom_border"
+            app:itemIconSize="28dp"
+            app:itemIconTint="@color/orange"
+            app:itemRippleColor="@color/orange"
+            app:itemTextColor="@color/orange"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_btn_edit_profile"
+            app:menu="@menu/menu_profile_bottom_nav" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_nav_tabs"
+            tools:listitem="@layout/item_profile_grid" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
