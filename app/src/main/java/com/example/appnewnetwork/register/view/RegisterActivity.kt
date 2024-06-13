@@ -18,7 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.insetsController?.setSystemBarsAppearance(
-            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+            WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
             WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
         )
         window.statusBarColor = ContextCompat.getColor(this, R.color.blue_primary)

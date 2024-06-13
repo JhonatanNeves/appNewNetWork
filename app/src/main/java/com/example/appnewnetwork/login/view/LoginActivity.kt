@@ -1,16 +1,20 @@
 package com.example.appnewnetwork.login.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.WindowInsetsController
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.appnewnetwork.R
+import com.example.appnewnetwork.common.base.DependencyInjector
 import com.example.appnewnetwork.common.util.TxtWatcher
 import com.example.appnewnetwork.databinding.ActivityLoginBinding
 import com.example.appnewnetwork.login.Login
+import com.example.appnewnetwork.login.presentation.LoginPresenter
+import com.example.appnewnetwork.main.view.MainActivity
+import com.example.appnewnetwork.register.view.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
 
@@ -19,14 +23,18 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_login)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        window.insetsController?.setSystemBarsAppearance(
+            WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+            WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+        )
         window.statusBarColor = ContextCompat.getColor(this, R.color.blue_primary)
+
+        presenter = LoginPresenter(this, DependencyInjector.loginRepository())
+
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
             loginEditEmail.addTextChangedListener(TxtWatcher {
@@ -43,8 +51,8 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
             }
 
-            loginTxtRegister.setOnClickListener {
-                TODO()
+            loginTxtSingup.setOnClickListener {
+                goToRegisterScreen()
             }
         }
     }
@@ -54,6 +62,9 @@ class LoginActivity : AppCompatActivity(), Login.View {
                 && binding.loginEditPassword.text.toString().isNotEmpty()
     }
 
+    private fun goToRegisterScreen(){
+        startActivity(Intent(this, RegisterActivity::class.java))
+    }
     override fun showProgress(enabled: Boolean) {
         binding.loginBtnEnter.showProgress(enabled)
     }
@@ -69,7 +80,10 @@ class LoginActivity : AppCompatActivity(), Login.View {
     }
 
     override fun onUserAuthenticated() {
-        TODO()   }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
 
     override fun onUserUnauthorized(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()    }
