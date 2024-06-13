@@ -1,8 +1,6 @@
 package com.example.appnewnetwork.register.presentation
 
 import android.net.Uri
-import com.example.appnewnetwork.R
-import com.example.appnewnetwork.register.RegisterNameAndPassword
 import com.example.appnewnetwork.register.data.RegisterCallback
 import com.example.appnewnetwork.register.data.RegisterRepository
 import com.example.appnewnetwork.register.view.RegisterPhoto

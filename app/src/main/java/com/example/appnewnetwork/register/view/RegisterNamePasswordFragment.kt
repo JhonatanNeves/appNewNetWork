@@ -33,7 +33,7 @@ class RegisterNamePasswordFragment : Fragment(R.layout.fragment_register_name_pa
 
         binding?.let {
             with(it) {
-                registerTxtLogin.setOnClickListener {
+                registerTxtSingup.setOnClickListener {
                     activity?.finish()
                 }
 
