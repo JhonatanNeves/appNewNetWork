@@ -15,7 +15,7 @@
     <string name="continuee">Continuar</string>
     <string name="agree_terms_policy">By clicking Next, you agree to our </string>
     <string name="agree_terms_policy2"><b>Terms, Data Policy and Cookies Policy.</b></string>
-    <string name="welcome_to_allPlantery"><b>WELCOME TO PLANTRY,\n%1$s</b>\nFind methods to care for and monitor your plant. You can change your username at any time.</string>
+    <string name="welcome_to_allPlantery"><b>WELCOME TO NetWork,\n%1$s</b>\nFind methods to care for and monitor your plant. You can change your username at any time.</string>
     <string name="photo_register_subtitle">Add a profile picture to let your friends know its you.</string>
     <string name="photo_register_title">Upload profile picture</string>
     <string name="take_picture">Tirar foto</string>
@@ -34,8 +34,8 @@
     <string name="password_not_equal">The password and password confirmation must be the same</string>
     <string name="save">Save</string>
     <string name="title_activity_add">AddActivity</string>
-    <string name="photo">Photo</string>
-    <string name="gallery">Gallery</string>
+    <string name="photo"><font color="@color/white">Photo</font></string>
+    <string name="gallery"><font color="@color/white">Gallery</font></string>
     <string name="write_caption">Escreva uma descrição…</string>
     <string name="share">compartilhar</string>
     <string name="go">Avançar</string>
