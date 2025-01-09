@@ -74,10 +74,6 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         replaceFragment(fragment)
     }
 
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let { openImageCropper(it) }
-    }
-
     override fun goToWelcomeScreen(name: String) {
         val fragment = RegisterWelcomeFragment().apply {
             arguments = Bundle().apply {
@@ -98,6 +94,9 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         startActivity(intent)
     }
 
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { openImageCropper(it) }
+    }
     override fun goToGalleryScreen() {
         getContent.launch("image/*")
     }

@@ -32,7 +32,7 @@ class CropperImageFragment : Fragment(R.layout.fragment_image_cropper) {
                 cropperBtnCancel.setOnClickListener{
                     parentFragmentManager.popBackStack()
                 }
-                
+
                 cropperContainer.setOnCropImageCompleteListener { view, result ->
                     setFragmentResult("cropKey", bundleOf(KEY_URI to result.bitmap))
 
