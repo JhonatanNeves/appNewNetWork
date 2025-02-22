@@ -55,7 +55,7 @@
         android:background="@drawable/background_menu_nav_view"
         app:itemIconSize="28dp"
         app:itemIconTint="@color/orange"
-        app:itemRippleColor="@color/orange"
+        app:itemRippleColor="@null"
         app:itemTextColor="@color/orange"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"

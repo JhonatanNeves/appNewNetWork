@@ -3,11 +3,22 @@ package com.example.appnewnetwork.common.extension
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.appnewnetwork.R
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 
+fun Activity.hideKeyboard(){
+    val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    var view: View? = currentFocus
+    if (view == null) {
+        view = View(this)
+    }
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
 fun Activity.animationEnd(callback: () -> Unit): AnimatorListenerAdapter {
     return object : AnimatorListenerAdapter() {
         override fun onAnimationEnd(animation: Animator) {
@@ -19,7 +30,7 @@ fun Activity.animationEnd(callback: () -> Unit): AnimatorListenerAdapter {
 fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment) {
     if (supportFragmentManager.findFragmentById(id) == null) {
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.register_fragment, fragment)
+            add(id, fragment)
             commit()
         }
     } else {
@@ -29,4 +40,5 @@ fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment) {
             commit()
         }
     }
+    hideKeyboard()
 }
