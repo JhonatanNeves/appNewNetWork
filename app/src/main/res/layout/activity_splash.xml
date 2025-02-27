@@ -14,7 +14,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="180dp"
         android:layout_marginHorizontal="80dp"
-        android:src="@drawable/mash_logo" />
+        android:src="@drawable/connection_logo" />
 
     <ProgressBar
         android:id="@+id/splash_progress_bar"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="81dp"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:indeterminate="true"
-        android:indeterminateTint="@color/brown_earth"
+        android:indeterminateTint="@color/orange"
         />
 
 </RelativeLayout>

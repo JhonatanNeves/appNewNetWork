@@ -25,12 +25,12 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white">
+                android:background="@color/orange">
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/mash_logo_white"
+                    android:src="@drawable/connection_white_word"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@null" />
 

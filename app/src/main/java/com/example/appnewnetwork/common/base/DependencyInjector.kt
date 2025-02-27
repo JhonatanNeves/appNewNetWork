@@ -2,6 +2,8 @@ package com.example.appnewnetwork.common.base
 
 import com.example.appnewnetwork.login.data.FakeDataSource
 import com.example.appnewnetwork.login.data.LoginRepository
+import com.example.appnewnetwork.profile.data.ProfileFakeRemoteDataSource
+import com.example.appnewnetwork.profile.data.ProfileRepository
 import com.example.appnewnetwork.register.data.FakeRegisterDataSource
 import com.example.appnewnetwork.register.data.RegisterRepository
 import com.example.appnewnetwork.splash.data.FakeLocalDataSource
@@ -21,5 +23,8 @@ object DependencyInjector {
         return RegisterRepository(FakeRegisterDataSource())
     }
 
+    fun profileReposutory() : ProfileRepository {
+        return ProfileRepository(ProfileFakeRemoteDataSource())
+    }
 
 }

@@ -81,4 +81,6 @@
     <string name="settings_and_activity">Settings and Activity</string>
     <string name="coments_post">Liked by <b>dingyu.lu</b> and <b>others</b>\n<b>nevesjn2</b> The destroyed paining is replica.</string>
     <string name="login"><b><font color="#FFFFFF">Log in</font></b></string>
+    <string name="bio">Minas Gerais\n Software Engineer</string>
+    <string name="empty_list"><b>No Posts yet</b></string>
 </resources>
