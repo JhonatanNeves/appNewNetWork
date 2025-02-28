@@ -1,5 +1,6 @@
 package com.example.appnewnetwork.profile.presenter
 
+import android.annotation.SuppressLint
 import com.example.appnewnetwork.common.model.DataBase
 import com.example.appnewnetwork.common.model.Post
 import com.example.appnewnetwork.common.model.UserAuth
@@ -15,8 +16,7 @@ class ProfilePresenter(
 
     override fun fetchuserProfile() {
         view?.showProgress(true)
-        val userUUID = DataBase.sessionAuth?.uuid ?: throw  RuntimeException("User not found")
-        repository.fetchUserProfile(userUUID, object : RequestCallback<UserAuth>{
+        repository.fetchUserProfile(object : RequestCallback<UserAuth>{
             override fun onSuccess(data: UserAuth) {
                 view?.displayUserProfile(data)
             }
@@ -31,9 +31,9 @@ class ProfilePresenter(
         })
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun fetchuserPosts() {
-        val userUUID = DataBase.sessionAuth?.uuid ?: throw  RuntimeException("User not found")
-                repository.fetchUserPost(userUUID, object : RequestCallback<List<Post>>{
+                repository.fetchUserPost(object : RequestCallback<List<Post>>{
                     override fun onSuccess(data: List<Post>) {
                         if (data.isEmpty()) {
                             view?.displayEmptyPost()

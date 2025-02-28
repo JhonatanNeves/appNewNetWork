@@ -1,6 +1,7 @@
 package com.example.appnewnetwork.profile.view
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
         binding?.profileTxtFollowingCount?.text = userAuth.followingCount.toString()
         binding?.profileTxtFollowersCount?.text = userAuth.followersCount.toString()
         binding?.profileTxtUsername?.text = userAuth.name
-        binding?.profileTxtBio?.text = "Minas Gerais\\n Software Engineer"
+        binding?.profileTxtBio?.text = "Minas Gerais\n Software Engineer"
         presenter.fetchuserPosts()
     }
 
@@ -65,6 +66,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
         binding?.profileTxtEmpty?.visibility = View.GONE
         binding?.profileRv?.visibility = View.VISIBLE
         adapter.notifyDataSetChanged()
+        adapter.items = posts
     }
     @MenuRes
     override fun getMenu(): Int {

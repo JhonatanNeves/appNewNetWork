@@ -171,6 +171,7 @@
 
     <ProgressBar
         android:id="@+id/profile_progress"
+        android:visibility="gone"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -178,6 +179,7 @@
     <TextView
         android:id="@+id/profile_txt_empty"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:text="@string/empty_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

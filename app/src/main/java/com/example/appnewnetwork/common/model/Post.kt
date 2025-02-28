@@ -1,7 +1,6 @@
 package com.example.appnewnetwork.common.model
 
 import android.net.Uri
-import java.net.URI
 
 data class Post(
     val uuid: String,

@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.view.WindowInsetsController
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.appnewnetwork.R
 import com.example.appnewnetwork.camera.view.CameraFragment
@@ -19,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
+
+
 
     private lateinit var homeFragment: Fragment
     private lateinit var searchFragment: Fragment
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         searchFragment = SearchFragment()
         cameraFragment = CameraFragment()
         profileFragment = ProfileFragment()
+
+//        currentFragment = homeFragment
 
         binding.mainBottomNav.setOnNavigationItemSelectedListener(this)
         binding.mainBottomNav.selectedItemId = R.id.menu_bottom_home
