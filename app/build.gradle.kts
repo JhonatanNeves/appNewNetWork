@@ -52,8 +52,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
+    implementation("com.github.CanHub:Android-Image-Cropper:2.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.6")
 
-    implementation(libs.android.image.cropper)
     implementation (libs.circleimageview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
