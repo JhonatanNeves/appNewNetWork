@@ -1,48 +1,76 @@
 package com.example.appnewnetwork.profile.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.annotation.MenuRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appnewnetwork.R
+import com.example.appnewnetwork.common.base.BaseFragment
+import com.example.appnewnetwork.common.base.DependencyInjector
+import com.example.appnewnetwork.common.model.Post
+import com.example.appnewnetwork.common.model.UserAuth
+import com.example.appnewnetwork.databinding.ActivityLoginBinding.bind
+import com.example.appnewnetwork.databinding.FragmentProfileBinding
+import com.example.appnewnetwork.profile.Profile
+import com.example.appnewnetwork.profile.presenter.ProfilePresenter
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
+    R.layout.fragment_profile,
+        FragmentProfileBinding::bind
+    ), Profile.View {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val rv = view.findViewById<RecyclerView>(R.id.profile_rv)
-        rv.layoutManager = GridLayoutManager(context, 3)
-        rv.adapter = PostAdapter()
+    override lateinit var presenter: Profile.Presenter
+
+    private val adapter = PostAdapter()
+    override fun setUpPresenter() {
+        val repository = DependencyInjector.profileReposutory()
+        presenter = ProfilePresenter(this, repository)
+    }
+    override fun setupViews(){
+        binding?.profileRv?.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding?.profileRv?.adapter = adapter
+
+        presenter.fetchuserProfile()
     }
 
-    private class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>(){
+    override fun showProgress(enabled: Boolean) {
+        binding?.profileProgress?.visibility = if (enabled) View.VISIBLE else View.GONE
+    }
 
-        private class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            fun bind(image: Int) {
-                itemView.findViewById<ImageView>(R.id.item_profile_img_grid).setImageResource(image)
-            }
-        }
+    override fun displayUserProfile(userAuth: UserAuth) {
+        binding?.profileTxtPostsCount?.text = userAuth.postCount.toString()
+        binding?.profileTxtFollowingCount?.text = userAuth.followingCount.toString()
+        binding?.profileTxtFollowersCount?.text = userAuth.followersCount.toString()
+        binding?.profileTxtUsername?.text = userAuth.name
+        binding?.profileTxtBio?.text = "Minas Gerais\n Software Engineer"
+        presenter.fetchuserPosts()
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-            return PostViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_profile_grid, parent, false)
-            )
-        }
+    override fun displayRequestFailure(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
 
-        override fun getItemCount(): Int {
-            return 30
-        }
+    override fun displayEmptyPost() {
+        binding?.profileTxtEmpty?.visibility = View.VISIBLE
+        binding?.profileRv?.visibility = View.GONE
+    }
 
-        override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-            holder.bind(R.drawable.ic_insta_add)
-        }
-
+    @SuppressLint("NotifyDataSetChanged")
+    override fun displayFullPosts(posts: List<Post>) {
+        binding?.profileTxtEmpty?.visibility = View.GONE
+        binding?.profileRv?.visibility = View.VISIBLE
+        adapter.notifyDataSetChanged()
+        adapter.items = posts
+    }
+    @MenuRes
+    override fun getMenu(): Int {
+        return R.menu.menu_profile
     }
 
 }
