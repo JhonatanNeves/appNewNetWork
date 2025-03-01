@@ -34,7 +34,7 @@ class CropperImageFragment : Fragment(R.layout.fragment_image_cropper) {
                 }
 
                 cropperContainer.setOnCropImageCompleteListener { view, result ->
-                    setFragmentResult("cropKey", bundleOf(KEY_URI to result.bitmap))
+                    setFragmentResult("cropKey", bundleOf(KEY_URI to result.uri))
 
                     parentFragmentManager.popBackStack()
                 }
@@ -43,7 +43,7 @@ class CropperImageFragment : Fragment(R.layout.fragment_image_cropper) {
                     val dir = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                     if (dir != null) {
                         val uriToSaved = Uri.fromFile(File(dir.path, System.currentTimeMillis().toString() + ".jpeg"))
-                        cropperContainer.setImageUriAsync(uriToSaved)
+                        cropperContainer.saveCroppedImageAsync(uriToSaved)
                     }
                 }
             }
