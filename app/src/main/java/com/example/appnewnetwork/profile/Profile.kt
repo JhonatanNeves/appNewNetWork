@@ -16,9 +16,7 @@ interface Profile {
         fun showProgress(enabled : Boolean)
         fun displayUserProfile(userAuth: UserAuth)
         fun displayRequestFailure(message: String)
-
         fun displayEmptyPost()
-
         fun displayFullPosts(posts: List<Post>)
 
     }
