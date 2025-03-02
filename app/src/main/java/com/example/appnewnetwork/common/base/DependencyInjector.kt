@@ -1,5 +1,8 @@
 package com.example.appnewnetwork.common.base
 
+import com.example.appnewnetwork.home.data.FeedMemoryCache
+import com.example.appnewnetwork.home.data.HomeDataSourceFactory
+import com.example.appnewnetwork.home.data.HomeRepository
 import com.example.appnewnetwork.login.data.FakeDataSource
 import com.example.appnewnetwork.login.data.LoginRepository
 import com.example.appnewnetwork.profile.data.PostListMemoryCache
@@ -29,6 +32,12 @@ object DependencyInjector {
     fun profileReposutory(): ProfileRepository {
         return ProfileRepository(
             ProfileDataSourceFactory(ProfileMemoryCache, PostListMemoryCache)
+        )
+    }
+
+    fun homeRepository(): HomeRepository {
+        return HomeRepository(
+            HomeDataSourceFactory(FeedMemoryCache)
         )
     }
 }
