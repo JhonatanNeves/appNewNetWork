@@ -10,7 +10,7 @@
 
         <ImageView
             android:id="@+id/gallry_img_selected"
-            android:background="@color/blue_darker"
+            android:background="@color/brown_earth"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

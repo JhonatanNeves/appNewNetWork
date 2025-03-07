@@ -6,24 +6,26 @@ import android.view.MenuItem
 import android.view.WindowInsetsController
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.example.appnewnetwork.R
-import com.example.appnewnetwork.camera.view.CameraFragment
+import com.example.appnewnetwork.add.view.AddFragment
+import com.example.appnewnetwork.add.view.CameraFragment
 import com.example.appnewnetwork.common.extension.replaceFragment
 import com.example.appnewnetwork.databinding.ActivityMainBinding
 import com.example.appnewnetwork.home.view.HomeFragment
 import com.example.appnewnetwork.profile.view.ProfileFragment
 import com.example.appnewnetwork.search.view.SearchFragment
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+
     private lateinit var binding: ActivityMainBinding
-
-
 
     private lateinit var homeFragment: Fragment
     private lateinit var searchFragment: Fragment
-    private lateinit var cameraFragment: Fragment
+    private lateinit var addFragment: Fragment
     private lateinit var profileFragment: Fragment
     private var currentFragment: Fragment? = null
 
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         homeFragment = HomeFragment()
         searchFragment = SearchFragment()
-        cameraFragment = CameraFragment()
+        addFragment = AddFragment()
         profileFragment = ProfileFragment()
 
 //        currentFragment = homeFragment
@@ -56,25 +58,43 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     }
 
+    private fun setScrollToobarEnabled(enabled: Boolean) {
+        val params = binding.mainToolbar.layoutParams as AppBarLayout.LayoutParams
+        var coordinatorParams = binding.mainAppbar.layoutParams as CoordinatorLayout.LayoutParams
+        if (enabled) {
+            params.scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+        } else {
+            params.scrollFlags = 0
+            coordinatorParams.behavior = null
+        }
+        binding.mainAppbar.layoutParams = coordinatorParams
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        var scrollToolbarEnabled = false
         when(item.itemId){
             R.id.menu_bottom_home -> {
                 if (currentFragment == homeFragment) return false
                 currentFragment = homeFragment
+                scrollToolbarEnabled = true
             }
             R.id.menu_bottom_search -> {
                 if (currentFragment == searchFragment) return false
                 currentFragment = searchFragment
+                scrollToolbarEnabled = true
             }
             R.id.menu_bottom_more -> {
-                if (currentFragment == cameraFragment) return false
-                currentFragment = cameraFragment
+                if (currentFragment == addFragment) return false
+                currentFragment = addFragment
             }
             R.id.menu_bottom_profile -> {
                 if (currentFragment == profileFragment) return false
                 currentFragment = profileFragment
+                scrollToolbarEnabled = true
             }
         }
+
+        setScrollToobarEnabled(scrollToolbarEnabled)
 
         currentFragment?.let {
             replaceFragment(R.id.main_fragment, it)
