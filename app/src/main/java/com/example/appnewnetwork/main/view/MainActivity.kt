@@ -60,9 +60,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private fun setScrollToobarEnabled(enabled: Boolean) {
         val params = binding.mainToolbar.layoutParams as AppBarLayout.LayoutParams
-        var coordinatorParams = binding.mainAppbar.layoutParams as CoordinatorLayout.LayoutParams
+        val coordinatorParams = binding.mainAppbar.layoutParams as CoordinatorLayout.LayoutParams
         if (enabled) {
             params.scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+            coordinatorParams.behavior = AppBarLayout.Behavior()
         } else {
             params.scrollFlags = 0
             coordinatorParams.behavior = null
@@ -70,8 +71,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         binding.mainAppbar.layoutParams = coordinatorParams
     }
 
+    //concertar bug da toolbar , desativando quando o fragmento de camera abre
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        var scrollToolbarEnabled = false
+        var scrollToolbarEnabled = true
         when(item.itemId){
             R.id.menu_bottom_home -> {
                 if (currentFragment == homeFragment) return false
@@ -86,6 +88,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.menu_bottom_more -> {
                 if (currentFragment == addFragment) return false
                 currentFragment = addFragment
+                scrollToolbarEnabled = false
+
             }
             R.id.menu_bottom_profile -> {
                 if (currentFragment == profileFragment) return false
