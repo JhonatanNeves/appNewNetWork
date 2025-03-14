@@ -37,7 +37,7 @@
     <string name="photo">Photo</string>
     <string name="gallery">Gallery</string>
     <string name="write_caption">Escreva uma descrição…</string>
-    <string name="share">compartilhar</string>
+    <string name="share">Share</string>
     <string name="go">Avançar</string>
     <string name="search">Search</string>
     <string name="unfollow">Seguindo</string>
@@ -83,4 +83,6 @@
     <string name="login"><b><font color="#FFFFFF">Log in</font></b></string>
     <string name="bio">Minas Gerais\n Software Engineer</string>
     <string name="empty_list"><b>No Posts yet</b></string>
+    <string name="permission_camera_danied">Permission danied!</string>
+    <string name="description">Description</string>
 </resources>

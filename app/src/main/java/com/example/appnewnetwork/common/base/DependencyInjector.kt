@@ -1,5 +1,8 @@
 package com.example.appnewnetwork.common.base
 
+import com.example.appnewnetwork.add.data.AddFakeRemoteDataSource
+import com.example.appnewnetwork.add.data.AddLocalDataSource
+import com.example.appnewnetwork.add.data.AddRepository
 import com.example.appnewnetwork.home.data.FeedMemoryCache
 import com.example.appnewnetwork.home.data.HomeDataSourceFactory
 import com.example.appnewnetwork.home.data.HomeRepository
@@ -40,4 +43,9 @@ object DependencyInjector {
             HomeDataSourceFactory(FeedMemoryCache)
         )
     }
+
+    fun addRepository(): AddRepository{
+        return AddRepository(AddFakeRemoteDataSource(), AddLocalDataSource())
+    }
+
 }
