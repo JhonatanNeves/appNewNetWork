@@ -1,5 +1,6 @@
 package com.example.appnewnetwork.home.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, Home.Presenter>(
         binding?.homeRv?.visibility = View.GONE
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun displayFullPosts(posts: List<Post>) {
         binding?.homeRv?.visibility = View.VISIBLE
         binding?.homeTxtEmpty?.visibility = View.GONE

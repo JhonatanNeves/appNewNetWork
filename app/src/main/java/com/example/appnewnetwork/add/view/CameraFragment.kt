@@ -2,6 +2,7 @@ package com.example.appnewnetwork.add.view
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,6 +86,7 @@ class CameraFragment : Fragment() {
                 }
 
             imageCapture = ImageCapture.Builder()
+//                .setTargetResolution(Size(480, 480))  diminui o tamanho para ganhar levesa na img
                 .build()
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA

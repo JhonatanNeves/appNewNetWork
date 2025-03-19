@@ -35,7 +35,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
     override fun setupViews(){
         binding?.profileRv?.layoutManager = GridLayoutManager(requireContext(), 3)
         binding?.profileRv?.adapter = adapter
-
         presenter.fetchuserProfile()
     }
 
@@ -50,6 +49,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
         binding?.profileTxtUsername?.text = userAuth.name
         binding?.profileTxtBio?.text = "Minas Gerais\n Software Engineer"
         presenter.fetchuserPosts()
+        binding?.profileImg?.setImageURI(userAuth.photoUri)
     }
 
     override fun displayRequestFailure(message: String) {
