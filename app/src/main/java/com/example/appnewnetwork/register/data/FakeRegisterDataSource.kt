@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import com.example.appnewnetwork.common.model.DataBase
-import com.example.appnewnetwork.common.model.Photo
 import com.example.appnewnetwork.common.model.UserAuth
 import java.util.UUID
 
@@ -32,7 +31,7 @@ class FakeRegisterDataSource : RegisterDataSource {
             if (userAuth != null) {
                 callback.onFailure("User already registered")
             } else {
-                val newUser = UserAuth(UUID.randomUUID().toString(), name, email, password)
+                val newUser = UserAuth(UUID.randomUUID().toString(), name, email, password, null)
                 val created = DataBase.usersAuth.add(newUser)
 
                 if (created) {
@@ -62,14 +61,11 @@ class FakeRegisterDataSource : RegisterDataSource {
             if (userAuth == null) {
                 callback.onFailure("User not found")
             } else {
-                val newPhoto = Photo(userAuth.uuid,photoUri)
-                val created = DataBase.photos.add(newPhoto)
+                val index = DataBase.usersAuth.indexOf(DataBase.sessionAuth)
+                DataBase.usersAuth[index] = DataBase.sessionAuth!!.copy(photoUri = photoUri)
+                DataBase.sessionAuth = DataBase.usersAuth[index]
 
-                if (created) {
                     callback.onSuccess()
-                } else {
-                    callback.onFailure("Internal server error")
-                }
             }
             callback.onComplete()
         }, 2000)

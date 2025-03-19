@@ -1,8 +1,9 @@
 package com.example.appnewnetwork.profile.data
 
+import com.example.appnewnetwork.common.base.Cache
 import com.example.appnewnetwork.common.model.UserAuth
 
-object ProfileMemoryCache : ProfileCache<UserAuth> {
+object ProfileMemoryCache : Cache<UserAuth> {
 
     private var userAuth: UserAuth? = null
     override fun isCached(): Boolean {
@@ -16,7 +17,7 @@ object ProfileMemoryCache : ProfileCache<UserAuth> {
         return null
     }
 
-    override fun put(data: UserAuth) {
+    override fun put(data: UserAuth?) {
         userAuth = data
     }
 

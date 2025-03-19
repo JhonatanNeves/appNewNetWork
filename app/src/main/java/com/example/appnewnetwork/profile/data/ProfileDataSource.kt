@@ -16,5 +16,5 @@ interface ProfileDataSource {
 
     fun putUser(response: UserAuth) { throw UnsupportedOperationException() }
 
-    fun putPosts(reponse: List<Post>) { throw UnsupportedOperationException() }
+    fun putPosts(reponse: List<Post>?) { throw UnsupportedOperationException() }
 }

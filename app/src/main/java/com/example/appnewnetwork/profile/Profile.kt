@@ -10,6 +10,8 @@ interface Profile {
     interface Presenter : BasePresenter{
         fun fetchuserProfile()
         fun fetchuserPosts()
+
+        fun clear()
     }
 
     interface View : BaseView<Presenter> {
