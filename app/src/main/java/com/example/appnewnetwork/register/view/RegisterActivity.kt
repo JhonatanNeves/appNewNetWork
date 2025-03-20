@@ -80,14 +80,14 @@ class RegisterActivity : AppCompatActivity(), FragmentAttachListener {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
-
+    // open galley
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { openImageCropper(it) }
     }
     override fun goToGalleryScreen() {
         getContent.launch("image/*")
     }
-
+    // open camera
     private val getCamera = registerForActivityResult(ActivityResultContracts.TakePicture()) { saved ->
         if (saved) {
             openImageCropper(currentPhoto)
