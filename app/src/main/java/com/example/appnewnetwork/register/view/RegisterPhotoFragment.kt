@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.example.appnewnetwork.R
-import com.example.appnewnetwork.add.view.AddFragment
 import com.example.appnewnetwork.common.base.DependencyInjector
 import com.example.appnewnetwork.common.view.CropperImageFragment
 import com.example.appnewnetwork.common.view.CustomDialog

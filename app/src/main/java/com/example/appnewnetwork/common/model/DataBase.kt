@@ -22,6 +22,6 @@ object DataBase {
         posts[userA.uuid] = hashSetOf()
         feeds[userA.uuid] = hashSetOf()
 
-//         sessionAuth = usersAuth.first()
+         sessionAuth = usersAuth.first()
     }
 }

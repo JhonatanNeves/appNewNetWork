@@ -9,8 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.example.appnewnetwork.R
-import com.example.appnewnetwork.add.view.AddFragment
-import com.example.appnewnetwork.add.view.CameraFragment
+import com.example.appnewnetwork.post.view.AddFragment
 import com.example.appnewnetwork.common.extension.replaceFragment
 import com.example.appnewnetwork.databinding.ActivityMainBinding
 import com.example.appnewnetwork.home.view.HomeFragment
