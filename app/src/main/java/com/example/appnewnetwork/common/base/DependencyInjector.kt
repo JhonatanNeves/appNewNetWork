@@ -1,5 +1,6 @@
 package com.example.appnewnetwork.common.base
 
+import android.content.Context
 import com.example.appnewnetwork.add.data.AddFakeRemoteDataSource
 import com.example.appnewnetwork.add.data.AddLocalDataSource
 import com.example.appnewnetwork.add.data.AddRepository
@@ -8,6 +9,8 @@ import com.example.appnewnetwork.home.data.HomeDataSourceFactory
 import com.example.appnewnetwork.home.data.HomeRepository
 import com.example.appnewnetwork.login.data.FakeDataSource
 import com.example.appnewnetwork.login.data.LoginRepository
+import com.example.appnewnetwork.post.data.PostLocalDataSource
+import com.example.appnewnetwork.post.data.PostRepository
 import com.example.appnewnetwork.profile.data.PostListMemoryCache
 import com.example.appnewnetwork.profile.data.ProfileDataSourceFactory
 import com.example.appnewnetwork.profile.data.ProfileFakeRemoteDataSource
@@ -46,6 +49,10 @@ object DependencyInjector {
 
     fun addRepository(): AddRepository{
         return AddRepository(AddFakeRemoteDataSource(), AddLocalDataSource())
+    }
+
+    fun postRepository(context: Context) : PostRepository {
+        return PostRepository(PostLocalDataSource(context))
     }
 
 }
