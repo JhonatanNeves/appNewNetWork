@@ -1,6 +1,7 @@
 package com.example.appnewnetwork.post.presenter
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import com.example.appnewnetwork.common.model.DataBase
 import com.example.appnewnetwork.common.model.Post
 import com.example.appnewnetwork.common.model.UserAuth
@@ -22,8 +23,17 @@ class PostPresenter(
     private val repository: PostRepository
 ) : com.example.appnewnetwork.post.Post.Presenter, CoroutineScope {
 
+    private var uri: Uri? = null
     private val job = Job()
     override val coroutineContext: CoroutineContext = job + Dispatchers.IO
+    override fun selectUri(uri: Uri) {
+        this.uri = uri
+    }
+
+    override fun getSelectedUri(): Uri? {
+        return uri
+    }
+
     override fun fetchPictures() {
         // aqui acontece a chamada na thread MAIN (UI)
 

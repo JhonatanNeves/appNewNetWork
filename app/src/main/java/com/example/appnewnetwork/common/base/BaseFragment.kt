@@ -33,6 +33,7 @@ abstract class BaseFragment<T, P: BasePresenter>(
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         getMenu()?.let {
+            menu.clear()
             inflater.inflate(it, menu)
         }
         super.onCreateOptionsMenu(menu, inflater)
@@ -47,12 +48,6 @@ abstract class BaseFragment<T, P: BasePresenter>(
     }
     abstract fun setupViews()
 
-    fun OnCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
-        getMenu()?.let {
-            inflater.inflate(it, menu)
-        }
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
     abstract fun setUpPresenter()
     @MenuRes
