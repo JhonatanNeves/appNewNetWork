@@ -8,6 +8,8 @@ import com.example.appnewnetwork.common.model.UserAuth
 
 interface Post {
     interface Presenter: BasePresenter {
+        fun selectUri(uri: Uri)
+        fun getSelectedUri(): Uri?
         fun fetchPictures()
     }
 

@@ -1,12 +1,16 @@
 package com.example.appnewnetwork.post.view
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appnewnetwork.R
 import com.example.appnewnetwork.common.base.BaseFragment
@@ -25,11 +29,14 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding, Post.Presenter>(
     private val adapter = PictureAdapter() { uri ->
         binding?.gallryImgSelected?.setImageURI(uri)
         binding?.galleryNested?.smoothScrollTo(0, 0)
+        presenter.selectUri(uri)
     }
 
     override fun setUpPresenter() {
         presenter = PostPresenter(this, DependencyInjector.postRepository(requireContext()))
     }
+
+    override fun getMenu(): Int = R.menu.menu_send
 
     override fun setupViews() {
         binding?.galleryRv?.layoutManager = GridLayoutManager(requireContext(), 3)
@@ -50,6 +57,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding, Post.Presenter>(
         binding?.galleryRv?.visibility = View.GONE
     }
 
+
     override fun displayFullPictures(posts: List<Uri>) {
         binding?.galleryTxtEmpty?.visibility = View.GONE
         binding?.galleryRv?.visibility = View.VISIBLE
@@ -57,6 +65,19 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding, Post.Presenter>(
         adapter.items = posts
         binding?.gallryImgSelected?.setImageURI(posts.first())
         binding?.galleryNested?.smoothScrollTo(0, 0)
+        presenter.selectUri(posts.first())
+
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_send -> {
+                setFragmentResult("takePhotoKey", bundleOf("uri" to presenter.getSelectedUri()))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 
